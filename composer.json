@@ -1,0 +1,57 @@
+{
+    "name": "jeffersongoncalves/laravel-pixel",
+    "description": "This Laravel package offers a straightforward way to integrate Meta (Facebook) Pixel into your application. By configuring your Pixel ID, you can effortlessly track user interactions, page views, conversions, and other valuable events on your website. This helps you gather insights into your audience behavior and optimize your advertising campaigns. The package simplifies the process of adding the Pixel script to your Blade templates, enabling seamless analytics collection with minimal setup.",
+    "keywords": [
+        "jeffersongoncalves",
+        "laravel",
+        "laravel-pixel"
+    ],
+    "homepage": "https://github.com/jeffersongoncalves/laravel-pixel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jefferson Gonçalves",
+            "email": "gerson.simao.92@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2|^8.3",
+        "laravel/framework": "^11.0|^12.0",
+        "spatie/laravel-package-tools": "^1.14.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^3.7.4",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JeffersonGoncalves\\Pixel\\": "src"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JeffersonGoncalves\\Pixel\\PixelServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
