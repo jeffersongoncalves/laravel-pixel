@@ -1,4 +1,4 @@
-@if(!empty(config('pixel.pixel_id')))
+@if(!empty(pixel_settings()->pixel_id))
     <!-- Facebook Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s)
@@ -9,12 +9,12 @@
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '{{ config('pixel.pixel_id') }}');
+        fbq('init', '{{ pixel_settings()->pixel_id }}');
         fbq('track', 'PageView');
     </script>
     <noscript>
         <img height="1" width="1" style="display:none"
-             src="https://www.facebook.com/tr?id={{ config('pixel.pixel_id') }}&ev=PageView&noscript=1"/>
+             src="https://www.facebook.com/tr?id={{ pixel_settings()->pixel_id }}&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Facebook Pixel Code -->
 @endif

@@ -10,28 +10,78 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/jeffersongoncalves/laravel-pixel/fix-php-code-style-issues.yml?branch=master&label=code%20style&style=flat-square)](https://github.com/jeffersongoncalves/laravel-pixel/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/jeffersongoncalves/laravel-pixel.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/laravel-pixel)
 
-This Laravel package offers a straightforward way to integrate Meta (Facebook) Pixel into your application. By configuring your Pixel ID, you can effortlessly track user interactions, page views, conversions, and other valuable events on your website. This helps you gather insights into your audience behavior and optimize your advertising campaigns. The package simplifies the process of adding the Pixel script to your Blade templates, enabling seamless analytics collection with minimal setup.
+This Laravel package offers a straightforward way to integrate Meta (Facebook) Pixel into your application. The Pixel ID is stored in the database using [spatie/laravel-settings](https://github.com/spatie/laravel-settings), allowing you to manage it dynamically (e.g., via an admin panel) without relying on `.env` files or static config.
 
 ## Installation
 
-You can install the package via composer:
+Install the package via composer:
 
 ```bash
 composer require jeffersongoncalves/laravel-pixel
 ```
 
-## Usage
-
-Publish config file.
+Publish and run the spatie/laravel-settings migrations (if not already done):
 
 ```bash
-php artisan vendor:publish --tag=pixel-config
+php artisan vendor:publish --provider="Spatie\LaravelSettings\LaravelSettingsServiceProvider" --tag="migrations"
+php artisan migrate
 ```
 
-Add head template.
+Publish and run the pixel settings migration:
+
+```bash
+php artisan vendor:publish --tag="pixel-settings-migrations"
+php artisan migrate
+```
+
+## Usage
+
+### Setting the Pixel ID
+
+You can set the Pixel ID programmatically using any of these methods:
+
+**Helper function:**
 
 ```php
+$settings = pixel_settings();
+$settings->pixel_id = '123456789';
+$settings->save();
+```
+
+**Facade:**
+
+```php
+use JeffersonGoncalves\Pixel\Facades\PixelSettings;
+
+$settings = PixelSettings::getFacadeRoot();
+$settings->pixel_id = '123456789';
+$settings->save();
+```
+
+**Container resolution:**
+
+```php
+use JeffersonGoncalves\Pixel\Settings\PixelSettings;
+
+$settings = app(PixelSettings::class);
+$settings->pixel_id = '123456789';
+$settings->save();
+```
+
+### Adding the Pixel script to your layout
+
+Include the Blade component in your layout's `<head>` tag:
+
+```blade
 @include('pixel::script')
+```
+
+The script will only render when a valid Pixel ID is configured. If the Pixel ID is `null` or empty, nothing will be rendered.
+
+### Reading the Pixel ID
+
+```php
+$pixelId = pixel_settings()->pixel_id; // returns string|null
 ```
 
 ## Testing
