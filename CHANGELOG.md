@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.1 - 2026-02-24
+
+### What's Changed
+
+- Add Laravel 13.x support in composer.json
+- Add orchestra/testbench ^11.0 for Laravel 13 testing
+
 ## 2.0.0 - 2026-02-20
 
 ### Breaking Changes
@@ -26,12 +33,14 @@ All notable changes to this project will be documented in this file.
    ```bash
    composer update jeffersongoncalves/laravel-pixel
    
+   
    ```
 2. Publish and run spatie/laravel-settings migrations (if not already done):
    
    ```bash
    php artisan vendor:publish --provider="Spatie\LaravelSettings\LaravelSettingsServiceProvider" --tag="migrations"
    php artisan migrate
+   
    
    ```
 3. Publish and run pixel settings migration:
@@ -40,12 +49,14 @@ All notable changes to this project will be documented in this file.
    php artisan vendor:publish --tag="pixel-settings-migrations"
    php artisan migrate
    
+   
    ```
 4. Set your Pixel ID in the database:
    
    ```php
    pixel_settings()->pixel_id = 'YOUR_PIXEL_ID';
    pixel_settings()->save();
+   
    
    ```
 5. Remove `PIXEL_ID` from your `.env` file and delete `config/pixel.php` if published.
