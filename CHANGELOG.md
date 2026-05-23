@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.3 - 2026-05-23
+
+**Full Changelog**: https://github.com/jeffersongoncalves/laravel-pixel/compare/2.0.2...2.0.3
+
 ## 2.0.2 - 2026-04-26
 
 ### What's Changed
@@ -44,12 +48,14 @@ All notable changes to this project will be documented in this file.
    
    
    
+   
    ```
 2. Publish and run spatie/laravel-settings migrations (if not already done):
    
    ```bash
    php artisan vendor:publish --provider="Spatie\LaravelSettings\LaravelSettingsServiceProvider" --tag="migrations"
    php artisan migrate
+   
    
    
    
@@ -62,12 +68,14 @@ All notable changes to this project will be documented in this file.
    
    
    
+   
    ```
 4. Set your Pixel ID in the database:
    
    ```php
    pixel_settings()->pixel_id = 'YOUR_PIXEL_ID';
    pixel_settings()->save();
+   
    
    
    
