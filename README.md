@@ -12,6 +12,12 @@
 
 This Laravel package offers a straightforward way to integrate Meta (Facebook) Pixel into your application. The Pixel ID is stored in the database using [spatie/laravel-settings](https://github.com/spatie/laravel-settings), allowing you to manage it dynamically (e.g., via an admin panel) without relying on `.env` files or static config.
 
+## Compatibility
+
+| Package | PHP | Laravel |
+|---------|-----|---------|
+| 1.x | 8.2 / 8.3 / 8.4 | 11.x / 12.x / 13.x |
+
 ## Installation
 
 Install the package via composer:

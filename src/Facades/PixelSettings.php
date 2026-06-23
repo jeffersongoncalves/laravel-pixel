@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Facade;
 use JeffersonGoncalves\Pixel\Settings\PixelSettings as PixelSettingsClass;
 
 /**
- * @see \JeffersonGoncalves\Pixel\Settings\PixelSettings
+ * @property ?string $pixel_id
+ *
+ * @see PixelSettingsClass
  */
 class PixelSettings extends Facade
 {
