@@ -32,6 +32,9 @@ class TestCase extends Orchestra
 
     protected function setUpDatabase(): void
     {
+        // Real databases (MySQL/PostgreSQL in CI) keep tables and rows between tests.
+        Schema::dropAllTables();
+
         if (! Schema::hasTable('settings')) {
             Schema::create('settings', function ($table) {
                 $table->id();
