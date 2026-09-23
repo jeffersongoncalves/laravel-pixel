@@ -27,11 +27,7 @@ class TestCase extends Orchestra
     protected function defineEnvironment($app): void
     {
         $app['config']->set('database.default', 'testing');
-        $app['config']->set('database.connections.testing', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
+        $app['config']->set('database.connections.testing', $this->testing_connection());
     }
 
     protected function setUpDatabase(): void
@@ -62,5 +58,36 @@ class TestCase extends Orchestra
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+    }
+
+    /**
+     * The original in-memory SQLite connection by default; CI (tests.yml) sets
+     * PIXEL_TEST_DB_* to run the same suite on MySQL and PostgreSQL. Not DB_CONNECTION:
+     * Testbench pins it to "testing", which would always win over a driver read from it.
+     *
+     * @return array<string, mixed>
+     */
+    protected function testing_connection(): array
+    {
+        $driver = env('PIXEL_TEST_DB_DRIVER', 'sqlite');
+
+        if ($driver === 'sqlite') {
+            return [
+                'driver' => 'sqlite',
+                'database' => ':memory:',
+                'prefix' => '',
+            ];
+        }
+
+        return [
+            'driver' => $driver,
+            'host' => env('PIXEL_TEST_DB_HOST', '127.0.0.1'),
+            'port' => env('PIXEL_TEST_DB_PORT'),
+            'database' => env('PIXEL_TEST_DB_DATABASE', 'testing'),
+            'username' => env('PIXEL_TEST_DB_USERNAME', 'root'),
+            'password' => env('PIXEL_TEST_DB_PASSWORD', ''),
+            'charset' => $driver === 'pgsql' ? 'utf8' : 'utf8mb4',
+            'prefix' => '',
+        ];
     }
 }
