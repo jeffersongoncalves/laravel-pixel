@@ -1,6 +1,6 @@
 <div class="filament-hidden">
 
-![Laravel Pixel](https://raw.githubusercontent.com/jeffersongoncalves/laravel-pixel/master/art/jeffersongoncalves-laravel-pixel.png)
+![Laravel Pixel](https://raw.githubusercontent.com/jeffersongoncalves/laravel-pixel/main/art/jeffersongoncalves-laravel-pixel.png)
 
 </div>
 
@@ -9,7 +9,7 @@
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jeffersongoncalves)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jeffersongoncalves/laravel-pixel.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/laravel-pixel)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/jeffersongoncalves/laravel-pixel/fix-php-code-style-issues.yml?branch=master&label=code%20style&style=flat-square)](https://github.com/jeffersongoncalves/laravel-pixel/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/jeffersongoncalves/laravel-pixel/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/jeffersongoncalves/laravel-pixel/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/jeffersongoncalves/laravel-pixel.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/laravel-pixel)
 
 This Laravel package offers a straightforward way to integrate Meta (Facebook) Pixel into your application. The Pixel ID is stored in the database using [spatie/laravel-settings](https://github.com/spatie/laravel-settings), allowing you to manage it dynamically (e.g., via an admin panel) without relying on `.env` files or static config.
