@@ -1,6 +1,9 @@
+@php
+    $cookieConsent = function_exists('cookie_consent_script_attributes') ? cookie_consent_script_attributes('pixel') : '';
+@endphp
 @if(!empty(pixel_settings()->pixel_id))
     <!-- Facebook Pixel Code -->
-    <script @if(\Illuminate\Support\Facades\Vite::cspNonce()) nonce="{{ \Illuminate\Support\Facades\Vite::cspNonce() }}" @endif>
+    <script{!! $cookieConsent !!} @if(\Illuminate\Support\Facades\Vite::cspNonce()) nonce="{{ \Illuminate\Support\Facades\Vite::cspNonce() }}" @endif>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -12,9 +15,11 @@
         fbq('init', '{{ pixel_settings()->pixel_id }}');
         fbq('track', 'PageView');
     </script>
+    @if($cookieConsent === '')
     <noscript>
         <img height="1" width="1" style="display:none"
              src="https://www.facebook.com/tr?id={{ pixel_settings()->pixel_id }}&ev=PageView&noscript=1"/>
     </noscript>
+    @endif
     <!-- End Facebook Pixel Code -->
 @endif
