@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.2.0 - 2026-11-17
+
+### Cookie consent
+
+With [laravel-cookie-consent](https://github.com/jeffersongoncalves/laravel-cookie-consent) 4.6+ installed and `block_scripts` on, the scripts wait until the visitor allows their cookie category (rendered as `type="text/plain" data-category="…"`, run with their CSP nonce once allowed). Nothing changes without it: this package still does not require laravel-cookie-consent.
+
 ## 3.1.0 - 2026-10-09
 
 - Every `<script>` rendered by the package carries Laravel's Vite CSP nonce when the app sets one (e.g. via laravel-security-headers), so nonce-based `script-src` policies work without `'unsafe-inline'`.
@@ -66,12 +72,14 @@ Drop Laravel 11 support (EOL, unpatched). Require `laravel/framework: ^12.61.1|^
    
    
    
+   
    ```
 2. Publish and run spatie/laravel-settings migrations (if not already done):
    
    ```bash
    php artisan vendor:publish --provider="Spatie\LaravelSettings\LaravelSettingsServiceProvider" --tag="migrations"
    php artisan migrate
+   
    
    
    
@@ -90,12 +98,14 @@ Drop Laravel 11 support (EOL, unpatched). Require `laravel/framework: ^12.61.1|^
    
    
    
+   
    ```
 4. Set your Pixel ID in the database:
    
    ```php
    pixel_settings()->pixel_id = 'YOUR_PIXEL_ID';
    pixel_settings()->save();
+   
    
    
    
